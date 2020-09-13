@@ -9,15 +9,20 @@ const QuestionScreen = ({ options, setCurrentOption }) => {
       style={{
         display: "flex",
         flexDirection: options.currentOption.isInRight ? "row" : "row-reverse",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
         height: "100vh",
-        width: "100vw",
+        margin: "0 100px",
+        transition: "all 1000ms ease-in",
       }}
     >
-      <div>
+      <div style={{ width: "50vw" }}>
         <p>{options.currentOption.question}</p>
-        <input type="text" id={`input--${options.currentOption._id}`}></input>
+        <input
+          style={{ width: "100%" }}
+          type="text"
+          id={`input--${options.currentOption._id}`}
+        ></input>
         <button
           onClick={() =>
             setCurrentOption({
