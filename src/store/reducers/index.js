@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import currentOption from "./currentOption";
+import options from "./options";
 
 export default combineReducers({
-  currentOption,
+  options,
 });

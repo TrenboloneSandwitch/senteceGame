@@ -1,8 +1,9 @@
 import React from "react";
 
-function NextLand() {
+function NextLand({ style }) {
   return (
     <svg
+      style={style}
       width="281"
       height="264"
       viewBox="0 0 281 264"

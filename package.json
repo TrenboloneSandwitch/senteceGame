@@ -4,7 +4,6 @@
   "description": "Sentence Game",
   "main": "src/App.js",
   "dependencies": {
-    "@frontendmasters/pet": "^1.0.3",
     "@reach/router": "^1.2.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
