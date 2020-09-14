@@ -1,6 +1,6 @@
 import React from "react";
 
-function NextLand({ style }) {
+function NextLand({ onClick, style }) {
   return (
     <svg
       style={style}
@@ -764,7 +764,7 @@ function NextLand({ style }) {
           fill="#A2D952"
         />
       </g>
-      <g id="next__button">
+      <g id="next__button" onClick={onClick} style={{ cursor: "pointer" }}>
         <path
           d="M89.866 132.183H109.322V0.0765797H89.866V132.183Z"
           fill="#6A4015"

@@ -1,10 +1,39 @@
 * {
   box-sizing: border-box;
   color: #333;
+  font-family: "VT323", monospace;
+  font-weight: 100;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
 body {
   background-color: #81a69b;
   margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #91d7e8;
+  background-image: url("./assets/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  transition: all 350ms ease-in;
+}
+body.blue {
+  background-image: unset;
+  background-color: #91d7e8;
+}
+body.green {
+  background-image: unset;
+
+  background-color: #91e89d;
+}
+body.yellow {
+  background-image: unset;
+
+  background-color: #e8e791;
 }

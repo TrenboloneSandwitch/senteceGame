@@ -1,19 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import QuestionScreen from "./QuestionScreen";
-import MainScreen from "./MainScreen";
+import QuestionScreen from "./components/QuestionScreen";
+import MainScreen from "./components/MainScreen";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Router>
+      <Router style={{ width: "100vw", height: "100vh" }}>
         <MainScreen path="/" />
         <QuestionScreen path="/question" />
       </Router>
-      <div></div>
+      <Footer />
     </Provider>
   );
 };

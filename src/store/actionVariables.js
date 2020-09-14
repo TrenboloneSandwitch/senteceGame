@@ -1,2 +1,3 @@
 export const CHANGE_CURRENT_OPTION = "CHANGE_CURRENT_OPTION";
 export const IS_FINISHED = "IS_FINISHED";
+export const RESET = "RESET";

@@ -1,14 +1,5 @@
-import { CHANGE_CURRENT_OPTION, IS_FINISHED } from "../actionVariables";
-
-const myState = {
-  items: [
-    { question: "Why", answer: "", _id: 0, isInRight: true },
-    { question: "What", answer: "", _id: 1, isInRight: false },
-    { question: "Where", answer: "", _id: 2, isInRight: true },
-  ],
-  currentOption: {},
-  isFinished: false,
-};
+import { CHANGE_CURRENT_OPTION, IS_FINISHED, RESET } from "../actionVariables";
+import { myState } from "./initialState";
 
 export default function options(state = myState, action) {
   switch (action.type) {
@@ -29,6 +20,9 @@ export default function options(state = myState, action) {
 
     case IS_FINISHED: {
       return { ...state, isFinished: true };
+    }
+    case RESET: {
+      return { ...state, items: myState.items };
     }
 
     default:

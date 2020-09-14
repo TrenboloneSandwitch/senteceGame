@@ -1,3 +1,3 @@
 export function isEmpty(text) {
-  return text == null || text.length <= 0;
+  return text == null || text.length == 0;
 }
