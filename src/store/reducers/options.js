@@ -1,4 +1,4 @@
-import { CHANGE_CURRENT_OPTION } from "../actionVariables";
+import { CHANGE_CURRENT_OPTION, IS_FINISHED } from "../actionVariables";
 
 const myState = {
   items: [
@@ -7,15 +7,30 @@ const myState = {
     { question: "Where", answer: "", _id: 2, isInRight: true },
   ],
   currentOption: {},
+  isFinished: false,
 };
 
 export default function options(state = myState, action) {
   switch (action.type) {
     case CHANGE_CURRENT_OPTION:
-      console.log(state);
-      const newState = { ...state, currentOption: action.payload };
+      let { items, currentOption } = state;
+
+      const updatedItems = items.map((el) =>
+        el._id === currentOption._id ? currentOption : el
+      );
+
+      const newState = {
+        ...state,
+        items: updatedItems,
+        currentOption: action.payload,
+      };
       console.log(newState);
       return newState;
+
+    case IS_FINISHED: {
+      return { ...state, isFinished: true };
+    }
+
     default:
       return state;
   }

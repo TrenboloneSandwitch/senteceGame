@@ -1,9 +1,43 @@
 import React, { useState, useEffect, useContext } from "react";
 import { connect } from "react-redux";
-import changeCurrentOption from "./store/actionCreators/currentOption";
+import {
+  changeCurrentOption,
+  isFinished,
+} from "./store/actionCreators/currentOption";
 import NextLand from "./NextLand";
+import { isEmpty } from "./validation";
+import { navigate } from "@reach/router";
 
-const QuestionScreen = ({ options, setCurrentOption }) => {
+const QuestionScreen = ({ options, setCurrentOption, setDone }) => {
+  const [error, setError] = useState(null);
+  const [inputVal, setInputVal] = useState("");
+
+  useEffect(() => {
+    if (Object.keys(options.currentOption).length === 0)
+      setCurrentOption(options.items[0]);
+  }, []);
+
+  useEffect(() => {
+    options.currentOption.answer = inputVal;
+  }, [inputVal]);
+
+  const nextQuestion = () => {
+    /*  if (isEmpty(options.currentOption.answer)) {
+      setError("Input must be filled...");
+      return;
+    }
+ */
+    setError(null);
+    setCurrentOption({
+      ...options.items[options.currentOption._id + 1],
+    });
+    setInputVal("");
+    if (options.items.length <= options.currentOption._id + 1) {
+      setDone();
+      navigate("/");
+    }
+  };
+
   return (
     <div
       style={{
@@ -13,29 +47,26 @@ const QuestionScreen = ({ options, setCurrentOption }) => {
         alignItems: "center",
         height: "100vh",
         margin: "0 100px",
-        transition: "all 1000ms ease-in",
       }}
     >
       <div style={{ width: "50vw" }}>
-        <p>{options.currentOption.question}</p>
+        <h1>{options.currentOption.question}</h1>
         <input
-          style={{ width: "100%" }}
+          style={{
+            width: "100%",
+            fontSize: "3em",
+            backgroundColor: "rgba(0,0,0,.1)",
+            border: 0,
+            borderRadius: "15px",
+          }}
+          maxLength={20}
           type="text"
-          id={`input--${options.currentOption._id}`}
+          id={`input`}
+          value={inputVal}
+          onChange={({ currentTarget }) => setInputVal(currentTarget.value)}
         ></input>
-        <button
-          onClick={() =>
-            setCurrentOption({
-              ...options.items[
-                Object.keys(options.currentOption).length == 0
-                  ? 0
-                  : options.currentOption._id + 1
-              ],
-            })
-          }
-        >
-          tu
-        </button>
+        <button onClick={nextQuestion}>tu</button>
+        <span>{error}</span>
       </div>
       <NextLand style={{}} />
     </div>
@@ -49,6 +80,9 @@ const mapStateToProps = ({ options }) => ({
 const mapDispatchToProps = (dispatch) => ({
   setCurrentOption(option) {
     dispatch(changeCurrentOption(option));
+  },
+  setDone() {
+    dispatch(isFinished());
   },
 });
 
